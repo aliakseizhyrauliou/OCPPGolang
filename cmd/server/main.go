@@ -1,15 +1,15 @@
 package main
 
 import (
-	"github.com/aliakseizhurauliou/OCPPGolang/handlers"
+	"github.com/aliakseizhurauliou/OCPPGolang/ws_handler"
 )
 
 func main() {
-	handlers.StartServer()
+	ws_handler.StartServer()
+	// Ваш код здесь
 
 	for {
 
 	}
-	// Ваш код здесь
 
 }

@@ -1,10 +1,11 @@
-package handlers
+package ws_handler
 
 import (
 	"fmt"
 	"github.com/aliakseizhurauliou/OCPPGolang/mapping"
 	"github.com/gorilla/websocket"
 	"net/http"
+	"strings"
 	"sync"
 )
 
@@ -50,12 +51,11 @@ func (server *Server) ReadMessage(w http.ResponseWriter, r *http.Request) {
 			break // Выходим из цикла, если клиент пытается закрыть соединение или связь прервана
 		}
 
-		ocpp := mapping.Map(string(message))
+		ocppMessage, err := mapping.MapToOcpp(string(message))
 
-		if ocpp.MessageType == "bootNotification" {
-			fmt.Println("BOOT!")
+		if strings.Compare(ocppMessage.MessageType, "BootNotification") == 0 {
+			fmt.Println("Boot!")
 		}
-
 	}
 }
 
